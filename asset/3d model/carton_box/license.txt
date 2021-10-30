@@ -1,0 +1,11 @@
+Model Information:
+* title:	carton box
+* source:	https://sketchfab.com/3d-models/carton-box-01a456e5e3744fe7aab52868bb758821
+* author:	Hugo Armando Villadiego A (https://sketchfab.com/HugoVilladiego)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "carton box" (https://sketchfab.com/3d-models/carton-box-01a456e5e3744fe7aab52868bb758821) by Hugo Armando Villadiego A (https://sketchfab.com/HugoVilladiego) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
