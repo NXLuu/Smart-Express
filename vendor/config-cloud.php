@@ -8,8 +8,8 @@ use Cloudinary\Api\Upload\UploadApi;
 Configuration::instance([
     'cloud' => [
         'cloud_name' => 'multichoice',
-        'api_key' => '918429456821834',
-        'api_secret' => '33jynjvkfm5_ZNLLdZvHvkKjols'
+        'api_key' => '',
+        'api_secret' => ''
     ],
     'url' => [
         'secure' => true
