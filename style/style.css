@@ -6,6 +6,13 @@
     --gradient-sec: linear-gradient(90deg, #111c58 0, #5c2782 51%, #111c58);
 }
 
+
+
+#map, #mapvt {
+  height: 500px;
+  width: 500px;
+}
+
 .container-layout {
     height: calc(100% - 56px);
     overflow: auto;

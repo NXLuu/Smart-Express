@@ -1,0 +1,458 @@
+﻿ @import url('https://fonts.googleapis.com/css?family=Montserrat');
+ /*-------------------------------- END ----*/
+
+ #body-row {
+     margin-left: 0;
+     margin-right: 0;
+ }
+
+ #send-map, #rev-map {
+     width: 100%;
+     height: 350px;
+ }
+
+ #mapvt1 {
+     width: 100%;
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     width: 100%;
+ }
+
+ .addShipBtn {
+     background-image: var(--gradient);
+     background-size: 200%;
+     margin-right: 10px;
+     /* background: black; */
+     padding: 7px;
+     border-radius: 0 20px 0px 20px;
+     transition: all 0.3s;
+ }
+
+ .addBtn:hover .addShipBtn {
+     border-radius: 20px 0px 20px 0px;
+ }
+
+ .addBtn:hover .fa-plus {
+     transform: rotate(360deg);
+ }
+
+ .addBtn .fa-plus {
+     border-radius: 50%;
+     padding: 11px;
+     background-image: var(--gradient);
+     background-size: 200%;
+     transition: all 0.3s;
+     /* background: aqua;
+ }
+
+ #sidebar-container {
+     min-height: 100vh;
+     background-color: white;
+     padding: 0;
+     box-shadow: rgb(0 0 0 / 10%) 0px 1px 4px;
+     border-radius: 2px;
+     /* flex: unset; */
+ }
+
+ .sidebar-expanded {
+     width: 230px;
+ }
+
+ .sidebar-collapsed {
+     /*width: 60px;*/
+     width: 100px;
+ }
+
+ /* ----------| Menu item*/
+
+ #sidebar-container .list-group a {
+     border: none;
+     height: 50px;
+     color: #000000;
+     border-radius: 0 20px 0 20px;
+     transition: all 0.3s;
+ }
+
+ #sidebar-container .list-group a:hover {
+     box-shadow: 0 0 10px red;
+     color: #f01f75;
+ }
+
+ /* ----------| Submenu item*/
+
+ #sidebar-container .list-group li.list-group-item {
+     background-color: white;
+ }
+
+ #sidebar-container .list-group .sidebar-submenu a {
+     height: 45px;
+     padding-left: 30px;
+ }
+
+ .sidebar-submenu {
+     font-size: 0.9rem;
+ }
+
+ /* ----------| Separators */
+
+ .sidebar-separator-title {
+     background-color: white;
+     height: 35px;
+     color: black;
+ }
+
+ .sidebar-separator {
+     background-color: white;
+     height: 25px;
+     color: black;
+ }
+
+ .logo-separator {
+     background-color: white;
+     height: 60px;
+     color: black;
+ }
+
+ .mapboxgl-canvas {
+     left: 0;
+ }
+
+ a.bg-dark {
+     background-color: white !important;
+     color: black;
+ }
+
+ .header-main-content {
+     background-color: white;
+     display: flex;
+     -webkit-box-align: center;
+     align-items: center;
+     -webkit-box-pack: justify;
+     justify-content: space-between;
+     min-height: 76px;
+     height: 76px;
+     box-shadow: rgb(0 0 0 / 10%) 0px 1px 4px;
+     border-radius: 2px;
+     z-index: 2;
+     position: relative;
+ }
+
+ .header-main-content .account img {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+ }
+
+ a {
+     color: #1F2471;
+ }
+
+ a:hover {
+     text-decoration: none;
+ }
+
+ .help i {
+     color: white;
+     width: 32px;
+     height: 32px;
+     line-height: 32px;
+     text-align: center;
+     border-radius: 50%;
+     background-image: var(--gradient);
+     background-size: 200%;
+ }
+
+ .input-number {
+     width: 80px;
+     padding: 0 12px;
+     vertical-align: top;
+     text-align: center;
+     outline: none;
+ }
+
+ .input-number, .input-number-decrement, .input-number-increment {
+     border: 1px solid #ccc;
+     height: 40px;
+     user-select: none;
+ }
+
+ .input-number-decrement, .input-number-increment {
+     display: inline-block;
+     width: 30px;
+     line-height: 38px;
+     background: #f1f1f1;
+     color: #444;
+     text-align: center;
+     font-weight: bold;
+     cursor: pointer;
+ }
+
+ .input-number-decrement:active, .input-number-increment:active {
+     background: #ddd;
+ }
+
+ .input-number-decrement {
+     border-right: none;
+     border-radius: 4px 0 0 4px;
+ }
+
+ .input-number-increment {
+     border-left: none;
+     border-radius: 0 4px 4px 0;
+ }
+
+ .container-inner form input:focus {
+     outline: none;
+     box-shadow: 0 2px 1px rgb(240 31 117 / 50%);
+     border: none;
+ }
+
+ .container-inner input {
+     border: 1px solid #e8e8e8;
+ }
+
+ .container-inner input:hover {
+     border: 1px solid #d1c6c6;
+ }
+
+ .container-inner .separator::before, .container-inner .separator::after {
+     height: 4px;
+ }
+
+ .separator-sm {
+     width: 5px;
+ }
+
+ .container-inner button {
+     background-color: white;
+     border: 2px solid rgb(255, 99, 99);
+     color: red;
+     font-weight: 700;
+ }
+
+ .container-inner button:hover {
+     color: white;
+     background-image: var(--gradient);
+     background-size: 200%;
+     border-color: red;
+     background-color: white;
+ }
+
+ .custom-control-input:checked~.custom-control-label::before {
+     background-image: var(--gradient);
+     background-size: 200%;
+     border: red;
+     outline: none;
+ }
+
+ @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+ /*-------------------------------- END ----*/
+ #body-row {
+     margin-left: 0;
+     margin-right: 0;
+ }
+
+ #sidebar-container {
+     min-height: 100vh;
+     background-color: white;
+     padding: 0;
+     box-shadow: rgb(0 0 0 / 10%) 0px 1px 4px;
+     border-radius: 2px;
+     /* flex: unset; */
+ }
+
+ .sidebar-expanded {
+     width: 230px;
+ }
+
+ .sidebar-collapsed {
+     /*width: 60px;*/
+     width: 100px;
+ }
+
+ /* ----------| Menu item*/
+ #sidebar-container .list-group a {
+     border: none;
+     height: 50px;
+     color: #000000;
+     border-radius: 0 20px 0 20px;
+     transition: all 0.3s;
+ }
+
+
+ #sidebar-container .list-group a:hover {
+     box-shadow: 0 0 10px red;
+     color: #f01f75;
+ }
+
+ /* ----------| Submenu item*/
+ #sidebar-container .list-group li.list-group-item {
+     background-color: white;
+ }
+
+ #sidebar-container .list-group .sidebar-submenu a {
+     height: 45px;
+     padding-left: 30px;
+ }
+
+ .sidebar-submenu {
+     font-size: 0.9rem;
+ }
+
+ /* ----------| Separators */
+ .sidebar-separator-title {
+     background-color: white;
+     height: 35px;
+     color: black;
+ }
+
+ .sidebar-separator {
+     background-color: white;
+     height: 25px;
+     color: black;
+ }
+
+ .logo-separator {
+     background-color: white;
+     height: 60px;
+     color: black;
+ }
+
+ a.bg-dark {
+     background-color: white !important;
+     color: black;
+ }
+
+ .header-main-content {
+     background-color: white;
+     display: flex;
+     -webkit-box-align: center;
+     align-items: center;
+     -webkit-box-pack: justify;
+     justify-content: space-between;
+     min-height: 76px;
+     height: 76px;
+     box-shadow: rgb(0 0 0 / 10%) 0px 1px 4px;
+     border-radius: 2px;
+     z-index: 2;
+     position: relative;
+ }
+
+ .header-main-content .account img {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+
+ }
+
+ a {
+     color: #1F2471;
+ }
+
+ a:hover {
+     text-decoration: none;
+ }
+
+ .help i {
+     color: white;
+     width: 32px;
+     height: 32px;
+     line-height: 32px;
+     text-align: center;
+     border-radius: 50%;
+     background-image: var(--gradient);
+     background-size: 200%;
+ }
+
+ .input-number {
+     width: 80px;
+     padding: 0 12px;
+     vertical-align: top;
+     text-align: center;
+     outline: none;
+ }
+
+ .input-number,
+ .input-number-decrement,
+ .input-number-increment {
+     border: 1px solid #ccc;
+     height: 40px;
+     user-select: none;
+ }
+
+ .input-number-decrement,
+ .input-number-increment {
+     display: inline-block;
+     width: 30px;
+     line-height: 38px;
+     background: #f1f1f1;
+     color: #444;
+     text-align: center;
+     font-weight: bold;
+     cursor: pointer;
+ }
+
+ .input-number-decrement:active,
+ .input-number-increment:active {
+     background: #ddd;
+ }
+
+ .input-number-decrement {
+     border-right: none;
+     border-radius: 4px 0 0 4px;
+ }
+
+ .input-number-increment {
+     border-left: none;
+     border-radius: 0 4px 4px 0;
+ }
+
+ .container-inner form input:focus {
+     outline: none;
+     box-shadow: 0 2px 1px rgb(240 31 117 / 50%);
+     border: none;
+ }
+
+
+ .container-inner input {
+     border: 1px solid #e8e8e8;
+ }
+
+ .container-inner input:hover {
+     border: 1px solid #d1c6c6;
+ }
+
+ .container-inner .separator::before,
+ .container-inner .separator::after {
+     height: 4px;
+ }
+
+ .separator-sm {
+     width: 5px;
+ }
+
+ .container-inner button {
+     background-color: white;
+     border: 2px solid rgb(255, 99, 99);
+     color: red;
+     font-weight: 700;
+
+ }
+
+ .container-inner button:hover {
+     color: white;
+     background-image: var(--gradient);
+     background-size: 200%;
+     border-color: red;
+     background-color: white;
+
+ }
+
+ .custom-control-input:checked~.custom-control-label::before {
+     background-image: var(--gradient);
+     background-size: 200%;
+     border: red;
+     outline: none;
+ }
