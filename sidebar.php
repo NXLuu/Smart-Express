@@ -8,7 +8,7 @@
                             font-weight: 700;
                         ">Smart</span>
           </a>
-             
+
 
           <a href="admin.php" class="btn-cust text-center text-white mb-3 w-75 mx-auto">
               <i class="fas fa-plus"></i>
@@ -26,9 +26,6 @@
               <a href="order.php" class="list-group-item list-group-item-action">
                   <span class="menu-collapsed">Tất cả đơn hàng</span>
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
-                  <span class="menu-collapsed">Theo dõi đơn hàng</span>
-              </a>
           </div>
           <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start collapsed">
               <div class="d-flex w-100 justify-content-start align-items-center">
@@ -38,20 +35,20 @@
               </div>
           </a>
           <!-- Submenu content -->
-          <div id="submenu2" class="sidebar-submenu collapse" style="">
+          <div id="submenu2" class="sidebar-submenu collapse" >
               <a href="shipper.php" class="list-group-item list-group-item-action">
                   <span class="menu-collapsed">Tất cả shipper</span>
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
-                  <span class="menu-collapsed">Thay đỏi mật khẩu</span>
-              </a>
           </div>
-          <a href="map.php" class=" list-group-item list-group-item-action">
+          <a href="map.php" class=" list-group-item list-group-item-action" id="btn-map">
               <div class="d-flex w-100 justify-content-start align-items-center">
                   <span class="fa fa-tasks fa-fw mr-3"></span>
-                  <span class="menu-collapsed">Tasks</span>
+                  <span class="menu-collapsed">Maps</span>
               </div>
           </a>
+          <div id="sub-menu-map" class="" >
+             
+          </div>
 
 
       </ul><!-- List Group END-->

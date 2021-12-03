@@ -8,6 +8,78 @@ class shipper
         $this->link = $link;
     }
 
+    public function loadShipper()
+    {
+        $listShipper = array();
+        $sql = "SELECT * FROM shipper";
+        if ($result = mysqli_query($this->link, $sql)) {
+                while ($row = mysqli_fetch_array($result)) {
+                    $shipper = new stdClass();
+                    $shipper->ma = $row["ma"];
+                    $shipper->sdt = $row["tel"];
+                    $shipper->ten = $row["ten"];
+                    $shipper->lng = $row["lng"];
+                    $shipper->lat = $row["lat"];
+                    $shipper->anh = $row["anh"];
+                    $shipper->tc = (int)$row["thCong"];
+                    array_push($listShipper, $shipper);
+                }
+        } else {
+        }
+        return $listShipper;
+    }
+
+    public function loadOrder($id)
+    {
+        $listOrder = array();
+
+        $sql = 'SELECT * FROM don WHERE maShipper = ?';
+        $stmt = $this->link->prepare($sql);
+        $stmt->bind_param("i", $id);
+
+        $stmt->execute();
+
+        if ($result = $stmt->get_result()) {
+
+            if (mysqli_num_rows($result)) {
+
+                while ($row = mysqli_fetch_array($result)) {
+                    $order = new stdClass();
+                    $sql1 = "SELECT * FROM nguoi WHERE ma=" . $row["maGui"];
+                    $sql2 = "SELECT * FROM nguoi WHERE ma=" . $row["maNhan"];
+                    $sql3 = "SELECT * FROM size WHERE ma=" . $row["maSize"];
+                    $res1 = mysqli_query($this->link, $sql1);
+                    $p1 = mysqli_fetch_array($res1);
+
+
+                    $res2 = mysqli_query($this->link, $sql2);
+                    $p2 = mysqli_fetch_array($res2);
+
+
+                    $res3 = mysqli_query($this->link, $sql3);
+                    $size = mysqli_fetch_array($res3);
+
+                    $ma = $row["ma"];
+                    $tenSP = $row["tenSP"];
+                    $tt = $row["tt"];
+
+                    $order->ma = $ma;
+                    $order->tenSP = $tenSP;
+                    $order->tt = $tt;
+                    $order->p1 = $p1;
+                    $order->p2 = $p2;
+                    $order->size = $size;
+
+                    array_push($listOrder, $order);
+                }
+            } else {
+            }
+        } else {
+        }
+
+        return $listOrder;
+    }
+
     public function load()
     {
         $sql = "SELECT * FROM shipper";
@@ -96,16 +168,15 @@ class shipper
 
     public function update($ten, $tel, $DOB, $dc, $vt, $lng, $lat, $pt, $anh, $ma)
     {
-        $sql = 'UPDATE shipper SET ten = ?, tel = ?,vitri = ?, thCong = ?, thBai = ?, pt = ?, anh = ?, DOB = ?, lng = ?, lat = ?, dc = ? where ma = ?';
+        $sql = 'UPDATE shipper SET ten = ?, tel = ?,vitri = ?, pt = ?, anh = ?, DOB = ?, lng = ?, lat = ?, dc = ? where ma = ?';
         $stmt = $this->link->prepare($sql);
-        $tc = 0;
-        $tb = 0;
+       
         $lng = (float)$lng;
         $lat = (float)$lat;
         if ($anh == null) {
             $anh = $this->get_row($ma)["anh"];
         }
-        $stmt->bind_param("sssiisssddsi", $ten, $tel, $vt, $tc, $tb, $pt, $anh, $DOB, $lng, $lat, $dc, $ma);
+        $stmt->bind_param("ssssssddsi", $ten, $tel, $vt, $pt, $anh, $DOB, $lng, $lat, $dc, $ma);
 
         if ($stmt->execute()) {
             echo "Registered Successfully!";
@@ -119,6 +190,11 @@ class shipper
         $sql = "DELETE FROM shipper WHERE ma = ?";
         $stmt = $this->link->prepare($sql);
         $stmt->bind_param("i", $id);
+
+        $sql2 = 'UPDATE don SET tt="Đang xử lý", maShipper = null WHERE maShipper=?';
+        $stmt2 = $this->link->prepare($sql2);
+        $stmt2->bind_param("i", $id);
+        $stmt2->execute();
 
         if ($stmt->execute()) {
             echo "1 record deleted.";
@@ -177,6 +253,6 @@ class shipper
         } else {
             $out .= "<h3>Không có shipper nào</h3>";
         }
-        return $out; 
+        return $out;
     }
 }

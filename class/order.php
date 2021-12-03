@@ -9,11 +9,146 @@ class order
         $this->link = $link;
     }
 
-    public function load()
+    public function updateStatus($ma, $maShipper, $tt)
+    {
+
+
+        $sql = 'UPDATE don SET tt = ? where ma = ?';
+        $stmt = $this->link->prepare($sql);
+        $stmt->bind_param("si", $tt, $ma);
+
+        if ($stmt->execute()) {
+            echo "Update Thanh Cong!";
+        } else {
+            echo mysqli_error($this->link);
+        }
+        if ($tt == "Đang giao hàng") {
+            $sql = 'UPDATE shipper SET thCong = thCong-1 where ma = ?';
+        } else {
+            $sql = 'UPDATE shipper SET thCong = thCong+1 where ma = ?';
+        }
+        $stmt = $this->link->prepare($sql);
+        $stmt->bind_param("i", $maShipper);
+
+        if ($stmt->execute()) {
+            echo "Update Thanh Cong!";
+        } else {
+            echo mysqli_error($this->link);
+        }
+    }
+
+    public function addOrderToShipper($maDon, $maShipper)
+    {
+        $sql = 'UPDATE don SET maShipper=?, tt="Đang giao hàng" WHERE ma=?';
+
+        $stmt = $this->link->prepare($sql);
+
+
+
+        $stmt->bind_param("ii", $maShipper, $maDon);
+        $stmt->execute();
+    }
+
+    public function loadOrder1()
+    {
+        $listOrder = array();
+
+        $sql = 'SELECT * FROM don WHERE maShipper IS NULL';
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute();
+
+        if ($result = $stmt->get_result()) {
+
+            if (mysqli_num_rows($result)) {
+
+                while ($row = mysqli_fetch_array($result)) {
+                    $order = new stdClass();
+                    $sql1 = "SELECT * FROM nguoi WHERE ma=" . $row["maGui"];
+                    $sql2 = "SELECT * FROM nguoi WHERE ma=" . $row["maNhan"];
+                    $sql3 = "SELECT * FROM size WHERE ma=" . $row["maSize"];
+                    $res1 = mysqli_query($this->link, $sql1);
+                    $p1 = mysqli_fetch_array($res1);
+
+
+                    $res2 = mysqli_query($this->link, $sql2);
+                    $p2 = mysqli_fetch_array($res2);
+
+
+                    $res3 = mysqli_query($this->link, $sql3);
+                    $size = mysqli_fetch_array($res3);
+
+                    $ma = $row["ma"];
+                    $tenSP = $row["tenSP"];
+                    $tt = $row["tt"];
+
+                    $order->ma = $ma;
+                    $order->tenSP = $tenSP;
+                    $order->tt = $tt;
+                    $order->p1 = $p1;
+                    $order->p2 = $p2;
+                    $order->size = $size;
+
+                    array_push($listOrder, $order);
+                }
+            } else {
+            }
+        } else {
+        }
+
+        return $listOrder;
+    }
+
+    public function loadOrder()
+    {
+        $sql = 'SELECT * FROM don WHERE tt="Đang xử lý"';
+        $out = "";
+
+        if ($result = mysqli_query($this->link, $sql)) {
+
+            if (mysqli_num_rows($result)) {
+                $out .=   '<select class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn 1 đơn hàng</option>';
+                while ($row = mysqli_fetch_array($result)) {
+                    $ma = $row["ma"];
+                    $tenSP = $row["tenSP"];
+                    $out .= '<option value="' . $ma . '">' . $ma . ' - ' . $tenSP . '</option>';
+                }
+                $out .= '</select>';
+            } else {
+                $out .= '<select class="form-select" aria-label="Default select example">
+                                    <option selected>Không có đơn hàng nào</option>
+                        </select>';
+            }
+        } else {
+
+            $out .= "<h3>Lỗi: không thực hiên câu lệnh " . $sql . " " . mysqli_error($this->link) . "</h3>";
+        }
+
+        return $out;
+    }
+
+    public function count()
     {
         $sql = "SELECT * FROM don";
-        $out = "";
+
         if ($result = mysqli_query($this->link, $sql)) {
+            return  mysqli_num_rows($result);
+        } else {
+            return 0;
+        }
+    }
+
+    public function load($index)
+    {
+        $sql = "SELECT * FROM don LIMIT ?,?";
+        $stmt = $this->link->prepare($sql);
+        $start = 5 * ($index - 1);
+        $end = 5;
+        $stmt->bind_param("ii", $start, $end);
+        $stmt->execute();
+        $out = "";
+
+        if ($result = $stmt->get_result()) {
 
             if (mysqli_num_rows($result)) {
                 $out .=  '<table class="table table-hover shadow align-middle" >
@@ -22,19 +157,17 @@ class order
                                         <th scope="col">Mã</th>
                                         <th scope="col">Tên SP</th>
                                         <th scope="col">Người Gửi</th>
-                                        <th scope="col">Đ/C gửi</th>
-                                        <th scope="col">SDT gửi</th>
                                         <th scope="col">Người Nhận</th>
-                                        <th scope="col">Đ/C nhận</th>
-                                        <th scope="col">SDT nhận</th>
+                                        <th scope="col">Trọng Lượng</th>
+                                        <th scope="col">Kích thước</th>
                                         <th scope="col">Trạng thái<th>
                                     </tr>
                                 </thead>
                                 <tbody>';
                 while ($row = mysqli_fetch_array($result)) {
-                    $sql1 = "SELECT * FROM nguoi WHERE ma=".$row["maGui"];
-                    $sql2 = "SELECT * FROM nguoi WHERE ma=".$row["maNhan"];
-                    $sql3 = "SELECT * FROM size WHERE ma=".$row["maSize"];
+                    $sql1 = "SELECT * FROM nguoi WHERE ma=" . $row["maGui"];
+                    $sql2 = "SELECT * FROM nguoi WHERE ma=" . $row["maNhan"];
+                    $sql3 = "SELECT * FROM size WHERE ma=" . $row["maSize"];
                     $res1 = mysqli_query($this->link, $sql1);
                     $p1 = mysqli_fetch_array($res1);
 
@@ -50,17 +183,16 @@ class order
                     $tenSP = $row["tenSP"];
                     $dcGui = $row["dcGui"];
                     $dcNhan = $row["dcNhan"];
+                    $can = $row["can"];
                     $tt = $row["tt"];
-                    $out .= ' <tr id="'.$ma.'">
+                    $out .= ' <tr id="' . $ma . '">
                                                     <td>' . $ma . '</td>
-                                                    <td>' . $tenSP . '</td>
-                                                    <td>' . $p1["ten"] . '</td>
-                                                    <td>' . $dcGui . '</td>
-                                                    <td>' . $p1["sdt"] . '</td>
-                                                    <td>' . $p2["ten"] . '</td>
-                                                    <td>' . $dcNhan . '</td>
-                                                    <td>' . $p2["sdt"] . '</td>
-                                                    <td>' . $tt . '</td>
+                                                    <td>' . $tenSP . '<br>' . $dcGui . '</td>
+                                                    <td><strong>' . $p1["ten"] . '</strong><br>' . $dcGui . '<br>' . $p1["sdt"] . '</td>
+                                                     <td><strong>' . $p2["ten"] . '</strong><br>' . $dcNhan . '<br>' . $p2["sdt"] . '</td>
+                                                    <td>' . $can . '</td>
+                                                    <td>' . $size["x"] . "x" . $size["y"] . "x" . $size["z"] . '</td>
+                                                    <td><span class="badge">' . $tt . '</span></td>
                                                 </tr>';
                 }
                 $out .= '</tbody>
@@ -69,7 +201,6 @@ class order
                 $out .= "<h3>Không có order nào</h3>";
             }
         } else {
-
             $out .= "<h3>Lỗi: không thực hiên câu lệnh " . $sql . " " . mysqli_error($this->link) . "</h3>";
         }
 

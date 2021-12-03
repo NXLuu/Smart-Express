@@ -1,19 +1,18 @@
 ﻿<!DOCTYPE html>
+<div style="position:absolute">
+    <?php include_once("header.php"); ?>
+</div>
 <?php
-session_start();
-?>
-<?php
-if (!isset($_SESSION['use']))  // If session is not set then redirect to Login Page
+if (!isset($_SESSION['user']))  // If session is not set then redirect to Login Page
 {
     header("Location:login.php");
 }
 ?>
 
+
 <html lang="en">
 
-<div style="position:absolute">
-    <?php include_once("header.php"); ?>
-</div>
+
 
 <body>
 
@@ -24,18 +23,8 @@ if (!isset($_SESSION['use']))  // If session is not set then redirect to Login P
             <!-- sidebar-container END -->
 
             <div class="col bg-gray p-0">
-                <header class="header-main-content d-flex justify-content-end">
-                    <section class="help mr-5">
-                        <a href="">
-                            <i class="fas fa-question"></i>
-                            <span>Trợ giúp</span>
-                        </a>
-                    </section>
-                    <section class="account d-flex align-items-center mr-5">
-                        <img src="asset/images/avatar.jpg" alt="" class="w-100">
-                        <span class="ml-2">0973389104</span>
-                    </section>
-                </header>
+                <?php include "sidebarHeader.php"; ?>
+
 
 
                 <section class="container-layout">
@@ -179,7 +168,6 @@ if (!isset($_SESSION['use']))  // If session is not set then redirect to Login P
                             </div>
                         </div>
                     </div>
-
                 </section>
             </div>
         </div>

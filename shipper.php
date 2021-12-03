@@ -39,8 +39,12 @@
                         <div class="inner">
                             <section class="text-center d-flex align-items-center justify-content-between py-2 mt-5 mb-3">
                                 <h4 class="m-0">Quản lý shipper</h4>
-                                <h5 class="m-0 d-flex">
-                                    <a class="addBtn btn text-white me-2 d-flex align-items-center p-0" data-toggle="modal" data-target="#exampleModal" data-func="add">
+                                <h5 class="m-0 d-flex align-items-center">
+                                    <a id="auto-add-btn" class="btn btn-outline-secondary mr-2">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Tự động thêm shipper
+                                    </a>
+                                    <a class="addBtn btn text-white d-flex align-items-center p-0" data-toggle="modal" data-target="#exampleModal" data-func="add">
                                         <i class="fas fa-plus"></i>
                                         <div class="addShipBtn">
                                             Thêm mới shipper
@@ -145,11 +149,11 @@
     </div>
 
     <!-- Detail Model -->
-    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thông tin chi tiết</h5>
+                    <h5 class="modal-title" id="detailLable">Thông tin chi tiết</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -201,40 +205,24 @@
                         <div class="row mt-2">
                             <div class="col">
                                 <h3 class=>Đơn hàng</h3>
-                                <table class="table">
-                                    <thead class="bg-dark" style="background: rgb(91,39,130);background: radial-gradient(circle, rgba(91,39,130,1) 14%, rgba(33,30,97,1) 95%);color: white;">
-                                        <tr>
-                                            <th scope="col">Mã</th>
-                                            <th scope="col">Địa chỉ gửi</th>
-                                            <th scope="col">SDT gửi</th>
-                                            <th scope="col">Địa chỉ gửi</th>
-                                            <th scope="col">SĐT nhận</th>
-                                            <th scope="col">Tên hàng</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div id="select-order" class="mr-2">
+                                        <select class="form-select p-2" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" id="add-order-shipper">Thêm đơn cho shipper</button>
 
-                                
+                                </div>
+                                <div id="table-order">
+
+                                </div>
+
+
+
                             </div>
 
                         </div>
@@ -248,11 +236,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loadingLabel">Đang Load dữ liệu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Bạn vui lòng chờ xíu!!!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mapbox/polyline@1.1.1/src/polyline.min.js"></script>
+<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 <script src="js/shipper.js"></script>
 
 

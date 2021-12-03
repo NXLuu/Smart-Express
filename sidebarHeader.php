@@ -7,6 +7,9 @@
      </section>
      <section class="account d-flex align-items-center mr-5">
          <img src="asset/images/avatar.jpg" alt="" class="w-100">
-         <span class="ml-2">0973389104</span>
+         <?php
+            echo  '<span class="ml-2">'.$_SESSION["user"]["tenDn"].'</span>';
+         ?>
+
      </section>
  </header>
