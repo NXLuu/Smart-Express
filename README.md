@@ -20,5 +20,6 @@ Provide a short description explaining the what, why, and how of your project. U
 Link demo: https://shipperexpress.000webhostapp.com/
 
 There is a homepage
-![Home page](assets/images/screenshot.png)
+![Home page](asset/images/screenshot.png)
+
 Login to access the admin page (name: test, pass: test)
